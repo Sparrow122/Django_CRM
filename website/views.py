@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
+from .forms import SignUpForm
 
 class Homepage(View):
 
@@ -32,9 +33,19 @@ class Logout_user(View):
     
 class Register_User(View):
     def get(self, request):
-        return render(request,template_name='register.html')
+        form = SignUpForm()
+        return render(request,template_name='register.html', context={'form': form})
     
     def post(self, request):
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
+        form = SignUpForm(request.POST)
+        if (form.is_valid()):
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, 'You have successfully registered!')
+            return redirect('homepage')
+        else:
+            messages.success(request, "Error occured, Please try again!")
+            return redirect('register')

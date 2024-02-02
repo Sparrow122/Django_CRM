@@ -22,16 +22,14 @@
         <form method="POST" action="{% url 'homepage' %}">
             {% csrf_token %}
             <div class="form-group">
-                <!-- <label for="exampleInputEmail1">Email address</label> -->
                 <input type="text" class="form-control" aria-describedby="emailHelp" name="username" placeholder="Username" required>
-                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
             </div><br>
             <div class="form-group">
-                <!-- <label for="exampleInputPassword1">Password</label> -->
                 <input type="password" class="form-control" name="password" placeholder="Password" required>
             </div><br>
-            <button type="submit" class="btn btn-primary">Login</button>
-            <a class="btn btn-primary" href="{% url 'register' %}" role="button">SignUp</a><br>
+            <button type="submit" class="btn btn-primary">Login</button><br><br>
+            <p>New User?</p>
+            <a class="btn btn-primary" href="{% url 'register' %}" role="button">SignUp</a>
             {% if messages %}
                 {% for mess in messages %}
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
