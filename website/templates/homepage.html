@@ -3,8 +3,68 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<div class="col-md-6 offset-md-2">
-    <h1>Hello World!</h1>
+<div class="container-fluid mt-3">
+    <table class="container-fluid table-hover table-bordered text-center m-1">
+        <tr>
+            <td class="table-dark h5">
+                S. No.
+            </td>
+            <td class="table-dark h5">
+                Name
+            </td>
+            <td class="table-dark h5">
+                Email
+            </td>
+            <td class="table-dark h5">
+                Phone
+            </td>
+            <td class="table-dark h5">
+                Address
+            </td>
+            <td class="table-dark h5">
+                City
+            </td>
+            <td class="table-dark h5">
+                State
+            </td>
+            <td class="table-dark h5">
+                ZipCode
+            </td>
+        </tr>
+        {% for record in records %}
+            <tr>
+                <td class="table-dark">
+                    <a href="{% url 'Cust_record' record.id %}">{{ forloop.counter }}</a>
+                </td>
+                <td class="table-dark">
+                    {{ record.first_name }} {{ record.last_name }}
+                </td>
+                <td class="table-dark">
+                    {{ record.email }}
+                </td>
+                <td class="table-dark">
+                    {{ record.phone }}
+                </td>
+                <td class="table-dark">
+                    {{ record.address }}
+                </td>
+                <td class="table-dark">
+                    {{ record.city }}
+                </td>
+                <td class="table-dark">
+                    {{ record.state }}
+                </td>
+                <td class="table-dark">
+                    {{ record.zipcode }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'addrecord' %}">
+        <button class="btn btn-primary m-3">
+            Add
+        </button>
+    </a>
     {% if messages %}
         {% for mess in messages %}
             <div class="alert alert-success alert-dismissible fade show" role="alert">

@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+<div class="container-fluid mt-3">
+    <div class="col-md-6 offset-md-2">
+        <h3>Update Record</h3>
+        <form method="POST" action="{% url 'update' id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Send</button><br><br>
+        </form>    
+    </div>
+</div>
+{% endblock %}

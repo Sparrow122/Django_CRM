@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="card m-3" style="width: 18rem;">
+    <div class="card-header">
+      <strong>Customer details</strong>
+    </div>
+    <ul class="list-group list-group-flush">
+      <!-- <li class="list-group-item"><strong>Id :</strong> {{ record.id }}</li> -->
+      <li class="list-group-item"><strong>Name :</strong> {{ record.first_name }} {{ record.last_name }}</li>
+      <li class="list-group-item"><strong>Email :</strong> {{ record.email }}</li>
+      <li class="list-group-item"><strong>Phone :</strong> {{ record.phone }}</li>
+      <li class="list-group-item"><strong>Address :</strong> {{ record.address }}</li>
+      <li class="list-group-item"><strong>City :</strong> {{ record.city }}</li>
+      <li class="list-group-item"><strong>State :</strong> {{ record.state }}</li>
+      <li class="list-group-item"><strong>Zip Code :</strong> {{ record.zipcode }}</li>
+    </ul>
+    <div class="container">
+        <a href="{% url 'homepage' %}">
+            <button type="button" class="btn btn-primary">Back</button>
+        </a>
+        <a href="{% url 'update' record.id %}">
+            <button type="button" class="btn btn-primary">Update</button>
+        </a>
+        <a href="{% url 'delete' record.id %}">
+            <button type="button" class="btn btn-danger">Delete</button>
+        </a>
+    </div>
+</div>
+
+
+{% endblock %}
